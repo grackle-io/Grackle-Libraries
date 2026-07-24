@@ -1,0 +1,8 @@
+{
+  "name": "6mm 2-Flute Upcut",
+  "type": "endMill",
+  "diameter": 6,
+  "fluteCount": 2,
+  "cutLength": 22,
+  "overallLength": 60
+}

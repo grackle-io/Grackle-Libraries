@@ -1,0 +1,8 @@
+{
+  "name": "1/8in Aluminum O-Flute Upcut",
+  "type": "endMill",
+  "diameter": 3.175,
+  "fluteCount": 1,
+  "cutLength": 6.35,
+  "overallLength": 44.45
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Onefinity Masso",
+  "templates": {
+    "linearMove": "G1 X{x:.3f} Y{y:.3f} Z{z:.3f} F{f:.0f}",
+    "travel": "G0 X{x:.3f} Y{y:.3f} Z{z:.3f}",
+    "dwell": "G4 P{ms:.0f}",
+    "toolChange": "T{number} M6"
+  },
+  "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
+  "commentFormat": "({text})",
+  "startScript": "G90 G94 G17\nG21",
+  "endScript": "M05\nM09\nM30"
+}

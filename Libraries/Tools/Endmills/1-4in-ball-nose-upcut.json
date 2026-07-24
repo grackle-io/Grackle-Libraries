@@ -1,0 +1,8 @@
+{
+  "name": "1/4in Ball Nose Upcut",
+  "type": "endMill",
+  "diameter": 6.35,
+  "fluteCount": 2,
+  "cutLength": 25.4,
+  "overallLength": 63.5
+}

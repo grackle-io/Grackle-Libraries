@@ -1,0 +1,18 @@
+{
+  "name": "Prusa / Marlin",
+  "templates": {
+    "linearMove": "G1 X{x:.3f} Y{y:.3f} Z{z:.3f} E{e:.5f} F{f:.0f}",
+    "travel": "G0 X{x:.3f} Y{y:.3f} Z{z:.3f} F{f:.0f}",
+    "temperatureSet": "M104 S{temp:.0f}",
+    "temperatureWait": "M109 S{temp:.0f}",
+    "bedTemperatureSet": "M140 S{temp:.0f}",
+    "bedTemperatureWait": "M190 S{temp:.0f}",
+    "fanSpeed": "M106 S{speed:.0f}",
+    "fanOff": "M107",
+    "dwell": "G4 P{ms:.0f}"
+  },
+  "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
+  "commentFormat": "; {text}",
+  "startScript": "G28 ; home all axes\nM104 S{hotendTemp:.0f} ; set hotend\nM140 S{bedTemp:.0f} ; set bed\nM109 S{hotendTemp:.0f} ; wait for hotend\nM190 S{bedTemp:.0f} ; wait for bed\nG92 E0 ; reset extruder",
+  "endScript": "M104 S0 ; hotend off\nM140 S0 ; bed off\nM107 ; fan off\nG1 Z{parkZ:.3f} F600 ; lift\nG28 X Y ; home XY\nM84 ; motors off"
+}

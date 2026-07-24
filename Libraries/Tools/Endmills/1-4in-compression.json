@@ -1,0 +1,8 @@
+{
+  "name": "1/4in Compression",
+  "type": "endMill",
+  "diameter": 6.35,
+  "fluteCount": 2,
+  "cutLength": 22.225,
+  "overallLength": 60.33
+}

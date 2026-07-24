@@ -1,0 +1,8 @@
+{
+  "name": "1/8in Flat 2D-3D Carving",
+  "type": "endMill",
+  "diameter": 3.175,
+  "fluteCount": 4,
+  "cutLength": 27.78,
+  "overallLength": 65.88
+}

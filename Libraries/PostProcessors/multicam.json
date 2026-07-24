@@ -1,0 +1,13 @@
+{
+  "name": "MultiCam ISO",
+  "templates": {
+    "linearMove": "M12 G1 X{x:.3f} Y{y:.3f} Z{z:.3f} F{f:.1f}",
+    "travel": "M22 G1 X{x:.3f} Y{y:.3f} Z{z:.3f}",
+    "dwell": "G4 F{s:.3f}",
+    "toolChange": "G00 T{number}"
+  },
+  "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
+  "commentFormat": "//{text}",
+  "startScript": "M90\nG90\nG74\nG17\nG71",
+  "endScript": "G98 P147 D1\nM02"
+}

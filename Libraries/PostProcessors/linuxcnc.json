@@ -1,0 +1,29 @@
+{
+  "name": "LinuxCNC",
+  "templates": {
+    "linearMove": "G1 X{x:.4f} Y{y:.4f} Z{z:.4f} F{f:.1f}",
+    "travel": "G0 X{x:.4f} Y{y:.4f} Z{z:.4f}",
+    "arcMoveCw": "G2 X{x:.4f} Y{y:.4f} Z{z:.4f} I{i:.4f} J{j:.4f} F{f:.1f}",
+    "arcMoveCcw": "G3 X{x:.4f} Y{y:.4f} Z{z:.4f} I{i:.4f} J{j:.4f} F{f:.1f}",
+    "dwell": "G4 P{s:.3f}",
+    "digitalOutputSyncOn": "M62 P{pin}",
+    "digitalOutputSyncOff": "M63 P{pin}",
+    "digitalOutputImmOn": "M64 P{pin}",
+    "digitalOutputImmOff": "M65 P{pin}",
+    "digitalInput": "M66 P{pin} L{mode} Q{timeout:.3f}",
+    "analogOutputSync": "M67 E{port} Q{value:.4f}",
+    "analogOutputImm": "M68 E{port} Q{value:.4f}",
+    "analogInput": "M66 E{port} L0",
+    "customMCode": "M{number} P{p} Q{q}",
+    "toolChange": "T{number} M6",
+    "probeToward": "G38.2 X{x:.4f} Y{y:.4f} Z{z:.4f} F{f:.1f}",
+    "probeTowardNoError": "G38.3 X{x:.4f} Y{y:.4f} Z{z:.4f} F{f:.1f}",
+    "spindleOnCw": "M3 S{speed:.0f}",
+    "spindleOnCcw": "M4 S{speed:.0f}",
+    "spindleOff": "M5"
+  },
+  "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
+  "commentFormat": "({text})",
+  "startScript": "G17 G21 G90 G94\nG54",
+  "endScript": "M5\nM2"
+}

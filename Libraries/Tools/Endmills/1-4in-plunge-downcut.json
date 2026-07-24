@@ -1,0 +1,8 @@
+{
+  "name": "1/4in Plunge Downcut",
+  "type": "endMill",
+  "diameter": 6.35,
+  "fluteCount": 2,
+  "cutLength": 19.05,
+  "overallLength": 57.15
+}

@@ -1,0 +1,8 @@
+{
+  "name": "1/16in Tapered Ball 5.4deg",
+  "type": "endMill",
+  "diameter": 1.59,
+  "fluteCount": 4,
+  "cutLength": 25.4,
+  "overallLength": 63.5
+}

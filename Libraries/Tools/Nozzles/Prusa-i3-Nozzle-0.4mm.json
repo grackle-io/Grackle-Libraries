@@ -1,0 +1,64 @@
+{
+  "name": "Prusa-i3-Nozzle-0.4mm",
+  "number": 0,
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -123.84710151785919,
+      "y": -47.47351775314751,
+      "z": 81.41556549072266,
+      "length": 155.62883327458147
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "tcpFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -123.84709930419922,
+      "y": -47.473517015671156,
+      "z": 75.41556549072266,
+      "length": 152.57570692016105
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "type": "nozzle",
+  "nozzleDiameter": 0.4,
+  "layerHeight": 0.2,
+  "filamentDiameter": 1.75,
+  "retractDistance": 0.8,
+  "retractSpeed": 2400
+}

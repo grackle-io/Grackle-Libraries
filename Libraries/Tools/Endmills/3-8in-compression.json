@@ -1,0 +1,8 @@
+{
+  "name": "3/8in Compression",
+  "type": "endMill",
+  "diameter": 9.525,
+  "fluteCount": 2,
+  "cutLength": 31.75,
+  "overallLength": 69.85
+}

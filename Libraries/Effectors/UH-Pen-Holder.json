@@ -1,0 +1,191 @@
+{
+  "name": "UH-Pen-Holder",
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": 39.80076935665543,
+      "y": 17.077731603677314,
+      "z": 82.61979675292969,
+      "length": 93.28333706297353
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    }
+  },
+  "parts": [
+    {
+      "name": "pen",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 0,
+          "y": -70.61979751586915,
+          "z": 0,
+          "length": 70.61979751586915
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        },
+        "normal": {
+          "x": -0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        }
+      }
+    }
+  ],
+  "tcpFlange": {
+    "name": "Frame",
+    "origin": {
+      "x": 0,
+      "y": -82.61979751586915,
+      "z": 0,
+      "length": 82.61979751586915
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "length": 1
+    },
+    "normal": {
+      "x": -0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    }
+  },
+  "states": [
+    {
+      "name": "up",
+      "pin": 5,
+      "onValue": false,
+      "partFlanges": {
+        "pen": {
+          "name": "Frame",
+          "origin": {
+            "x": 0,
+            "y": -70.61979751586915,
+            "z": 0,
+            "length": 70.61979751586915
+          },
+          "xAxis": {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "length": 1
+          },
+          "yAxis": {
+            "x": 0,
+            "y": 0,
+            "z": -1,
+            "length": 1
+          },
+          "normal": {
+            "x": -0,
+            "y": 1,
+            "z": 0,
+            "length": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "down",
+      "pin": 5,
+      "onValue": true,
+      "partFlanges": {
+        "pen": {
+          "name": "Frame",
+          "origin": {
+            "x": 0,
+            "y": -82.61979751586915,
+            "z": 0,
+            "length": 82.61979751586915
+          },
+          "xAxis": {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "length": 1
+          },
+          "yAxis": {
+            "x": 0,
+            "y": 0,
+            "z": -1,
+            "length": 1
+          },
+          "normal": {
+            "x": -0,
+            "y": 1,
+            "z": 0,
+            "length": 1
+          }
+        }
+      }
+    }
+  ],
+  "toolFlanges": [
+    {
+      "name": "pen",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 0,
+          "y": -70.61979751586915,
+          "z": 0,
+          "length": 70.61979751586915
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        },
+        "normal": {
+          "x": -0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        }
+      }
+    }
+  ]
+}

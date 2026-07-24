@@ -1,0 +1,8 @@
+{
+  "name": "1/4in Plastic O-Flute Upcut (1in)",
+  "type": "endMill",
+  "diameter": 6.35,
+  "fluteCount": 1,
+  "cutLength": 25.4,
+  "overallLength": 63.5
+}
