@@ -1,0 +1,30 @@
+{
+  "name": "grblHAL",
+  "templates": {
+    "linearMove": "G1 X{x:.3f} Y{y:.3f} Z{z:.3f} F{f:.1f}",
+    "travel": "G0 X{x:.3f} Y{y:.3f} Z{z:.3f}",
+    "arcMoveCw": "G2 X{x:.3f} Y{y:.3f} Z{z:.3f} I{i:.3f} J{j:.3f} F{f:.1f}",
+    "arcMoveCcw": "G3 X{x:.3f} Y{y:.3f} Z{z:.3f} I{i:.3f} J{j:.3f} F{f:.1f}",
+    "dwell": "G4 P{s:.3f}",
+    "unitsMillimeters": "G21",
+    "absoluteCoordinates": "G90",
+    "spindleOnCw": "M3 S{speed:.0f}",
+    "spindleOnCcw": "M4 S{speed:.0f}",
+    "spindleOff": "M5",
+    "toolChange": "T{number} M6",
+    "digitalOutputSyncOn": "M62 P{pin}",
+    "digitalOutputSyncOff": "M63 P{pin}",
+    "digitalOutputImmOn": "M64 P{pin}",
+    "digitalOutputImmOff": "M65 P{pin}",
+    "digitalInput": "M66 P{pin} L{mode} Q{timeout:.3f}",
+    "customMCode": "M{number}"
+  },
+  "axisMap": {
+    "X": "X",
+    "Y": "Y",
+    "Z": "Z"
+  },
+  "commentFormat": "({text})",
+  "startScript": "G94\nG17\nG54",
+  "endScript": "G28 G91 Z0\nG90\nM5\nM30"
+}
