@@ -293,11 +293,6 @@
       "heater": "bed",
       "target": 0,
       "name": "bed off"
-    },
-    {
-      "$type": "raw",
-      "gcode": "M84",
-      "name": "steppers off"
     }
   ],
   "originFrame": {

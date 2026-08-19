@@ -146,5 +146,14 @@
         }
       }
     }
-  ]
+  ],
+  "startOperations": [
+    {
+      "$type": "temperature",
+      "heater": "hotend",
+      "wait": true,
+      "name": "hotend to temperature, after the machine's mesh has been measured"
+    }
+  ],
+  "endOperations": []
 }
