@@ -257,6 +257,49 @@
     }
   ],
   "axes": [],
+  "maxFeedrate": 12000,
+  "startOperations": [
+    {
+      "$type": "temperature",
+      "heater": "bed",
+      "wait": true,
+      "name": "bed up to temperature before the mesh is measured"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G28 W",
+      "name": "home; W suppresses the stored mesh the G80 below replaces"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G80",
+      "name": "mesh bed leveling (8-bit Prusa firmware spells this G80, not G29)"
+    }
+  ],
+  "endOperations": [
+    {
+      "$type": "fan",
+      "speed": 0,
+      "name": "part fan off"
+    },
+    {
+      "$type": "temperature",
+      "heater": "hotend",
+      "target": 0,
+      "name": "hotend off"
+    },
+    {
+      "$type": "temperature",
+      "heater": "bed",
+      "target": 0,
+      "name": "bed off"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M84",
+      "name": "steppers off"
+    }
+  ],
   "originFrame": {
     "name": "Frame",
     "origin": {
