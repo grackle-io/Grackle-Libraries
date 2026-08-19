@@ -1,0 +1,26 @@
+{
+  "name": "Prusa MK4 (Buddy)",
+  "templates": {
+    "unitsMillimeters": "G21",
+    "absoluteCoordinates": "G90",
+    "extrusionAbsolute": "M82",
+    "extrusionRelative": "M83",
+    "resetExtrusion": "G92 E0",
+    "linearMove": "G1 X{x:.3f} Y{y:.3f} Z{z:.3f} E{e:.5f} F{f:.0f}",
+    "travel": "G0 X{x:.3f} Y{y:.3f} Z{z:.3f} F{f:.0f}",
+    "arcMoveCw": "G2 X{x:.3f} Y{y:.3f} Z{z:.3f} I{i:.3f} J{j:.3f} E{e:.5f} F{f:.0f}",
+    "arcMoveCcw": "G3 X{x:.3f} Y{y:.3f} Z{z:.3f} I{i:.3f} J{j:.3f} E{e:.5f} F{f:.0f}",
+    "temperatureSet": "M104 S{temp:.0f}",
+    "temperatureWait": "M109 S{temp:.0f}",
+    "bedTemperatureSet": "M140 S{temp:.0f}",
+    "bedTemperatureWait": "M190 S{temp:.0f}",
+    "fanSpeed": "M106 S{speed:.0f}",
+    "fanOff": "M107",
+    "dwell": "G4 P{ms:.0f}",
+    "customMCode": "M{number} P{p} Q{q}"
+  },
+  "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
+  "commentFormat": "; {text}",
+  "startScript": "M201 X4000 Y4000 Z200 E2500 ; maximum accelerations, mm/sec^2\nM203 X180 Y180 Z12 E80 ; maximum feedrates, mm/sec\nM204 P4000 R1200 T4000 ; print, retract and travel acceleration, mm/sec^2\nM205 X8.00 Y8.00 Z2.00 E10.00 ; jerk limits, mm/sec\nM205 S0 T0 ; minimum extruding and travel feed rate, mm/sec\nM221 S100 ; extrusion multiplier 100% — Grackle's E values are the truth\nM107 ; part fan off until a Fan operation asks otherwise",
+  "endScript": "G1 E-2 F2100 ; retract the filament tip so it stops oozing\nG1 X241 Y170 F3600 ; park the head at the back-right corner\nG4 ; drain the planner queue before the motors let go\nM900 K0 ; reset linear advance\nM142 S36 ; reset the heatbreak target temperature\nM84 X Y E ; steppers off — Z holds the bed where it is"
+}

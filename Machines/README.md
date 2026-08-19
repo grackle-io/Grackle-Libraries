@@ -16,7 +16,14 @@ a re-install.)
 `endOperations` runs once at the bottom. Both are the *machine's* band — the
 hotend heat belongs to the effector, which runs after. See
 `docs/start-end-scripts-and-material-handoff.md` in the plugin repo for the
-three-layer split.
+three-layer split, and `../PostProcessors/README.md` for the full band order.
+
+Both Prusa files stop at cooling down — fan off, hotend off, bed off — and do
+**not** end with `M84`. The post's end script runs after this band and parks the
+head first; a stepper disabled before the park would lose its position and drive
+somewhere else. `M84` therefore lives at the end of
+`PostProcessors/Prusa MK4 (Buddy).json` and
+`PostProcessors/Prusa MK3S (Prusa-Firmware).json`.
 
 The two Prusa printers here start the same way, and the order is the point:
 
@@ -35,10 +42,15 @@ says so rather than guessing.
 
 ### The mesh line must match what Machine Control sends
 
-| File | Firmware | Home + mesh |
-|---|---|---|
-| `Prusa-i3-MK3.json` | `Prusa-Firmware` (8-bit) | `G28 W` then `G80` |
-| `Prusa-MK4.json` | `Prusa-Firmware-Buddy` (32-bit) | `G28` then `G29` |
+| File | Firmware | Home + mesh | Post + effector |
+|---|---|---|---|
+| `Prusa-i3-MK3.json` | `Prusa-Firmware` (8-bit) | `G28 W` then `G80` | `Prusa MK3S (Prusa-Firmware).json` + `Prusa-i3-Extruder.json` |
+| `Prusa-MK4.json` | `Prusa-Firmware-Buddy` (32-bit) | `G28` then `G29` | `Prusa MK4 (Buddy).json` + `Prusa-MK4-Nextruder.json` |
+
+Pair each row across. `PostProcessors/prusa-marlin.json` is the older
+self-contained post: it homes and heats inside its own start script, so putting
+it next to either machine above does both twice — it is for a machine you built
+on the canvas that has no bring-up of its own.
 
 Grackle's **Home** button spells these from the board's own `M115` answer, so a
 file that disagrees with the table above will level a bed one way from the job
