@@ -61,6 +61,28 @@ grinds filament instead of priming. Put it below this effector's own
 The band re-runs on a material change as well as a tool change, which is what
 you want: new filament genuinely needs purging through.
 
+### A purge can read its own temperature
+
+Four `{token}` names resolve from the job's `Material` inside a raw block —
+`{hotendTemp}` (or `{nozzleTemp}`), `{bedTemp}` and `{fanSpeed}` — the same
+names a post's start script uses. That lets a purge be self-contained, bringing
+the nozzle up itself instead of relying on a `Temperature` above it:
+
+```jsonc
+{ "$type": "raw",
+  "gcode": "M109 S{hotendTemp:.0f}\nG1 Z0.2 F720\nG1 Y-2 F1000\nG92 E0\nG1 X60 E9 F1000",
+  "name": "intro line" }
+```
+
+One authored block, and the MK4 emits `M109 S210` under PLA and `M109 S240`
+under PETG. Write `{hotendTemp:.0f}` to control decimals.
+
+**Every other brace is left exactly as typed**, so a conditional pasted from a
+slicer (`{if layer_z < max_print_height}…{endif}`) still emits unchanged. The
+one thing that is an error rather than literal text is a *known* token the job
+cannot resolve — `{hotendTemp}` with no material wired — because shipping that
+brace to the firmware would fail on the machine instead of on the canvas.
+
 ## What is deliberately absent
 
 - **The purge / intro line itself.** The shape is above, but no coordinates
@@ -68,7 +90,8 @@ you want: new filament genuinely needs purging through.
   outside the solve context that resolves motion, so a preset cannot know where
   your machine's origin frame puts `Y-2` — and a wrong one scrapes the bed.
   Author it against your own setup, where you can see it in preview first.
-- **`{token}` substitution in `Raw Gcode`.** A raw block is literal text: it
-  cannot reference `{hotendTemp}` or a material-specific `M900 K` the way a
-  post's start script can. Author a `Temperature` operation for anything the
-  material should own.
+- **Tool and machine tokens in `Raw Gcode`.** The four *material* tokens above
+  resolve; a raw block still cannot reach the tool (`{nozzleDiameter}`,
+  `{filamentDiameter}`) or the machine, which a linear-advance `M900 K…` would
+  want. Kept deliberately to the names already contracted rather than opened
+  into a general expression language.
