@@ -41,10 +41,34 @@ second `M104 S0` would just be noise. An effector that hands off mid-job to a
 different effector — a real tool change — is the case where a tear-down entry
 earns its place.
 
+## The prime belongs here, not on the machine
+
+The effector's band runs **after** the machine's, and that is the whole reason
+the prime lives here. A purge authored into the machine's `startOperations`
+emits between the mesh levelling and the hotend heat — it extrudes cold, which
+grinds filament instead of priming. Put it below this effector's own
+`Temperature`, which is the first point in the job where the nozzle is hot:
+
+```jsonc
+"startOperations": [
+  { "$type": "temperature", "heater": "hotend", "wait": true },
+  { "$type": "raw",
+    "gcode": "G1 Z0.2 F720\nG1 Y-2 F1000\nG92 E0\nG1 X60 E9 F1000",
+    "name": "intro line" }
+]
+```
+
+The band re-runs on a material change as well as a tool change, which is what
+you want: new filament genuinely needs purging through.
+
 ## What is deliberately absent
 
-- **The purge / intro line.** It is real motion at bed-edge coordinates, and
-  fragment operations run outside the solve context that resolves motion, so a
-  preset cannot know where your machine's origin frame puts `Y-2`. Author the
-  purge as a `Raw Gcode` operation at the head of your job instead, where you
-  can see it in preview before it runs.
+- **The purge / intro line itself.** The shape is above, but no coordinates
+  ship. It is real motion at bed-edge coordinates, and fragment operations run
+  outside the solve context that resolves motion, so a preset cannot know where
+  your machine's origin frame puts `Y-2` — and a wrong one scrapes the bed.
+  Author it against your own setup, where you can see it in preview first.
+- **`{token}` substitution in `Raw Gcode`.** A raw block is literal text: it
+  cannot reference `{hotendTemp}` or a material-specific `M900 K` the way a
+  post's start script can. Author a `Temperature` operation for anything the
+  material should own.
