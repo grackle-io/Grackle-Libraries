@@ -1,0 +1,74 @@
+{
+  "name": "Prusa-MK4",
+  "kinematicClass": "cartesian3",
+  "maxFeedrate": 12000,
+  "parts": [],
+  "axes": [
+    {
+      "letter": "X",
+      "kind": "linear",
+      "travelMin": 0,
+      "travelMax": 250,
+      "maxFeedrate": 12000,
+      "continuous": false
+    },
+    {
+      "letter": "Y",
+      "kind": "linear",
+      "travelMin": 0,
+      "travelMax": 210,
+      "maxFeedrate": 12000,
+      "continuous": false
+    },
+    {
+      "letter": "Z",
+      "kind": "linear",
+      "travelMin": 0,
+      "travelMax": 220,
+      "maxFeedrate": 720,
+      "continuous": false
+    }
+  ],
+  "startOperations": [
+    {
+      "$type": "temperature",
+      "heater": "bed",
+      "wait": true,
+      "name": "bed up to temperature before the mesh is measured"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G28",
+      "name": "home; Buddy has no G28 W, and no stored mesh to suppress"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G29",
+      "name": "mesh bed leveling (Buddy is a Marlin 2 fork: G29, not the MK3's G80)"
+    }
+  ],
+  "endOperations": [
+    {
+      "$type": "fan",
+      "speed": 0,
+      "name": "part fan off"
+    },
+    {
+      "$type": "temperature",
+      "heater": "hotend",
+      "target": 0,
+      "name": "hotend off"
+    },
+    {
+      "$type": "temperature",
+      "heater": "bed",
+      "target": 0,
+      "name": "bed off"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M84",
+      "name": "steppers off"
+    }
+  ]
+}
