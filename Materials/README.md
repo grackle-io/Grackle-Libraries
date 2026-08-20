@@ -2,7 +2,7 @@
 
 One library entry per substance. A material file describes what it *is* —
 machining numbers, print numbers, and a density — and the job says which domain
-it is being used in, on the Material Library component's **Use** input
+it is being used in, on the Material Builder component's **Use** input
 (Grackle `DECISIONS.md`, 2026-08-19).
 
 ## Folders
@@ -16,11 +16,21 @@ it is being used in, on the Material Library component's **Use** input
 Folders are **organization only**: every folder loads the same unified
 `Material` schema, exactly as every `Tools/` category loads the same `Tool`.
 
-The Material Library's **Use** dropdown narrows the name list to one folder.
-A preset sitting in bare `Materials/` is sorted by its *contents* instead —
-print numbers put it in the additive list, `surfaceSpeed`/`chipload` in the
-subtractive one — so an unmigrated library keeps working. A material that is
-genuinely both printed and milled can be filed in both folders.
+All three folders are scanned, one folder deep. The Material Library's
+**Libraries…** browser picks between them one at a time, the way the Tool
+Library picks between `Endmills/` and `Nozzles/`; the component's own Name
+dropdown merges all three, so picking a preset never depends on remembering
+which folder it came from.
+
+A material that is genuinely both printed and milled can be filed in both
+folders — the additive entry is the one a shared name resolves to, so keep
+the two in step rather than letting them drift. Filing it once and letting
+the job's **Use** input designate the domain is the simpler option, and the
+one `DECISIONS.md` (2026-08-19) describes.
+
+Presets must sit **directly** inside one of these folders. A folder nested
+deeper (`Materials/Additive/Prusament/`) is not scanned, and a preset there
+is invisible to the dropdown.
 
 ## Fields
 
