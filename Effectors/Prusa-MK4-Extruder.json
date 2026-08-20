@@ -1,0 +1,394 @@
+{
+  "name": "Prusa-MK4-Extruder",
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -143.34709317660295,
+      "y": -30.073518753051758,
+      "z": 174.01557411471515,
+      "length": 227.45158976548342
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    }
+  },
+  "parts": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 39.11225996859335,
+          "y": -94.15253700534015,
+          "z": -14.062071929154797,
+          "length": 102.91846759126129
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -104.2348332080096,
+          "y": -16.01144682389696,
+          "z": 79.863037109375,
+          "length": 132.28519032616416
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ],
+  "startOperations": [
+    {
+      "$type": "temperature",
+      "wait": true,
+      "heater": "hotend",
+      "name": "Extruder Temp"
+    },
+    {
+      "$type": "temperature",
+      "wait": true,
+      "heater": "bed",
+      "name": "Bed Temp"
+    },
+    {
+      "$type": "fan",
+      "name": "Fan Speed"
+    },
+    {
+      "$type": "raw",
+      "gcode": "; prepare for purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X0 Y-4 Z15 F4800 ; move away and ready for the purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G92 E0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M569 S0 E ; set spreadcycle mode for extruder",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "; Extrude purge line",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G92 E0 ; reset extruder position",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 E2 F2400 ; deretraction after the initial one before nozzle cleaning",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 E7 X15 Z0.2 F500 ; purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X25 E4 F500 ; purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X35 E4 F650 ; purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M73 P0 R68",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X45 E4 F800 ; purge",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X48 Z0.05 F8000 ; wipe, move close to the bed",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G0 X51 Z0.2 F8000 ; wipe, move quickly away from the bed",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G92 E0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M221 S100 ; set flow to 100%",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G21 ; set units to millimeters",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G90 ; use absolute coordinates",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M83 ; use relative distances for extrusion",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M900 K0.05 ; Legacy LA",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M142 S36 ; set heatbreak target temp",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M107",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";LAYER_CHANGE",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";Z:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";HEIGHT:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 E-.8 F2100",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Z.8 F720",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M486 S0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 X123.442 Y141.42 F12000",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Z.2 F720",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 E.8 F1500",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M204 P600",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    }
+  ],
+  "endOperations": [
+    {
+      "$type": "temperature",
+      "target": 0,
+      "wait": false,
+      "heater": "hotend",
+      "name": "Extruder Temp"
+    },
+    {
+      "$type": "temperature",
+      "target": 0,
+      "wait": false,
+      "heater": "bed",
+      "name": "Bed Temp"
+    },
+    {
+      "$type": "fan",
+      "speed": 0,
+      "name": "Fan Speed"
+    }
+  ],
+  "tcpOverride": false,
+  "states": [],
+  "toolFlanges": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 39.11225996859335,
+          "y": -94.15253700534015,
+          "z": -14.062071929154797,
+          "length": 102.91846759126129
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -104.2348332080096,
+          "y": -16.01144682389696,
+          "z": 79.863037109375,
+          "length": 132.28519032616416
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ]
+}
