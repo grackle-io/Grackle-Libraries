@@ -1,0 +1,359 @@
+{
+  "name": "Prusa-i3-Extruder",
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -143.34709317660295,
+      "y": -30.073518753051758,
+      "z": 174.01557411471515,
+      "length": 227.45158976548342
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    }
+  },
+  "parts": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 19.499991658743767,
+          "y": -92.6000086239925,
+          "z": 17.399999000095754,
+          "length": 96.21731256410092
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84710151785919,
+          "y": -47.47351775314751,
+          "z": 81.41556549072266,
+          "length": 155.62883327458147
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ],
+  "startOperations": [
+    {
+      "$type": "temperature",
+      "wait": true,
+      "heater": "hotend",
+      "name": "Extruder Temp"
+    },
+    {
+      "$type": "temperature",
+      "wait": true,
+      "heater": "bed",
+      "name": "Bed Temp"
+    },
+    {
+      "$type": "fan",
+      "name": "Fan Speed"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M107",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";LAYER_CHANGE",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";Z:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";HEIGHT:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 E-.8 F2100",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M73 P7 R1",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M73 Q7 S1",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Z.6 F720",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Z0.2 F720",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Y-3 F1000 ; go outside print area",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G92 E0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 X60 E9 F1000 ; intro line",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 X100 E12.5 F1000 ; intro line",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G92 E0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M221 S95",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "; Don\u0027t change E values below. Excessive value can damage the printer.",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M907 E538 ; set extruder motor current",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G21 ; set units to millimeters",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G90 ; use absolute coordinates",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M83 ; use relative distances for extrusion",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M900 K0.05 ; Filament gcode LA 1.5",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M900 K30 ; Filament gcode LA 1.0",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M107",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";LAYER_CHANGE",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";Z:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";HEIGHT:0.2",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 E-.8 F2100",
+      "name": "Purge Line"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G1 Z.6 F720",
+      "name": "Purge Line"
+    }
+  ],
+  "endOperations": [
+    {
+      "$type": "temperature",
+      "target": 0,
+      "wait": false,
+      "heater": "hotend",
+      "name": "Extruder Temp"
+    },
+    {
+      "$type": "temperature",
+      "target": 0,
+      "wait": false,
+      "heater": "bed",
+      "name": "Bed Temp"
+    },
+    {
+      "$type": "fan",
+      "speed": 0,
+      "name": "Fan Speed"
+    }
+  ],
+  "tcpOverride": false,
+  "states": [],
+  "toolFlanges": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": 19.499991658743767,
+          "y": -92.6000086239925,
+          "z": 17.399999000095754,
+          "length": 96.21731256410092
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84710151785919,
+          "y": -47.47351775314751,
+          "z": 81.41556549072266,
+          "length": 155.62883327458147
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ]
+}
