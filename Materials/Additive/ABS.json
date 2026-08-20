@@ -1,0 +1,8 @@
+{
+  "name": "ABS",
+  "nozzleTemperature": 250,
+  "bedTemperature": 100,
+  "fanSpeed": 0,
+  "chamberTemperature": 50,
+  "density": 1.04
+}

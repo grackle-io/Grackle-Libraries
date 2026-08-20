@@ -1,0 +1,7 @@
+{
+  "name": "PP (Polypropylene)",
+  "nozzleTemperature": 230,
+  "bedTemperature": 90,
+  "fanSpeed": 102,
+  "density": 0.9
+}

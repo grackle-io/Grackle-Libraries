@@ -1,0 +1,7 @@
+{
+  "name": "PETG Glass Fiber",
+  "nozzleTemperature": 250,
+  "bedTemperature": 80,
+  "fanSpeed": 102,
+  "density": 1.38
+}

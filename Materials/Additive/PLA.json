@@ -1,0 +1,7 @@
+{
+  "name": "PLA",
+  "nozzleTemperature": 210,
+  "bedTemperature": 60,
+  "fanSpeed": 255,
+  "density": 1.24
+}

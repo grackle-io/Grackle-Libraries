@@ -1,0 +1,7 @@
+{
+  "name": "PVA Support",
+  "nozzleTemperature": 215,
+  "bedTemperature": 60,
+  "fanSpeed": 128,
+  "density": 1.23
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PA Carbon Fiber",
+  "nozzleTemperature": 280,
+  "bedTemperature": 90,
+  "fanSpeed": 0,
+  "chamberTemperature": 60,
+  "density": 1.18
+}

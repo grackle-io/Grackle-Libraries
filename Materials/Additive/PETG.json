@@ -1,0 +1,7 @@
+{
+  "name": "PETG",
+  "nozzleTemperature": 240,
+  "bedTemperature": 80,
+  "fanSpeed": 128,
+  "density": 1.27
+}

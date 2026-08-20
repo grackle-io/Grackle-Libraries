@@ -1,0 +1,8 @@
+{
+  "name": "HIPS",
+  "nozzleTemperature": 240,
+  "bedTemperature": 100,
+  "fanSpeed": 51,
+  "chamberTemperature": 50,
+  "density": 1.04
+}

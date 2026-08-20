@@ -1,0 +1,8 @@
+{
+  "name": "PC (Polycarbonate)",
+  "nozzleTemperature": 280,
+  "bedTemperature": 110,
+  "fanSpeed": 0,
+  "chamberTemperature": 70,
+  "density": 1.2
+}

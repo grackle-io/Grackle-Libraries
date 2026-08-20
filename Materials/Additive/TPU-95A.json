@@ -1,0 +1,7 @@
+{
+  "name": "TPU 95A",
+  "nozzleTemperature": 230,
+  "bedTemperature": 50,
+  "fanSpeed": 128,
+  "density": 1.21
+}

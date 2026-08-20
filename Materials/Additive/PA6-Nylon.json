@@ -1,0 +1,8 @@
+{
+  "name": "PA6 Nylon",
+  "nozzleTemperature": 260,
+  "bedTemperature": 80,
+  "fanSpeed": 0,
+  "chamberTemperature": 50,
+  "density": 1.14
+}
