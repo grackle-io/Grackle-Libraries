@@ -1,0 +1,703 @@
+{
+  "name": "Prusa-i3-MK3",
+  "kinematicClass": "Cartesian3",
+  "parts": [
+    {
+      "name": "frame",
+      "binding": "static",
+      "role": "none",
+      "axisLetter": "",
+      "continuous": false
+    },
+    {
+      "name": "Y-Axis",
+      "parent": "frame",
+      "binding": "linear",
+      "role": "workHolder",
+      "axisLetter": "Y",
+      "jointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": 109.04402923583984,
+          "y": 244.42092268159448,
+          "z": 69.53695487976074,
+          "length": 276.527712626526
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredJointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84709930419922,
+          "y": -47.473517015671156,
+          "z": 75.41556549072266,
+          "length": 152.57570692016105
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "travelMin": 0,
+      "travelMax": 210,
+      "continuous": false
+    },
+    {
+      "name": "Z-Axis",
+      "parent": "frame",
+      "binding": "linear",
+      "role": "none",
+      "axisLetter": "Z",
+      "jointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": 109.04402923583984,
+          "y": 244.42092268159448,
+          "z": 69.53695487976074,
+          "length": 276.527712626526
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        }
+      },
+      "authoredJointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84709930419922,
+          "y": -47.473517015671156,
+          "z": 75.41556549072266,
+          "length": 152.57570692016105
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        }
+      },
+      "travelMin": 0,
+      "travelMax": 210,
+      "continuous": false
+    },
+    {
+      "name": "X-Axis",
+      "parent": "Z-Axis",
+      "binding": "linear",
+      "role": "none",
+      "axisLetter": "X",
+      "jointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "length": 0
+        },
+        "xAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredJointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84709930419922,
+          "y": -47.473517015671156,
+          "z": 75.41556549072266,
+          "length": 152.57570692016105
+        },
+        "xAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": -19.499993872403735,
+          "y": 17.3999982626194,
+          "z": 98.6000086239925,
+          "length": 102.00476165951439
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -143.34709317660295,
+          "y": -30.073518753051758,
+          "z": 174.01557411471515,
+          "length": 227.45158976548342
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "travelMin": 0,
+      "travelMax": 250,
+      "continuous": false
+    }
+  ],
+  "axes": [],
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -232.89112854003906,
+      "y": -291.8944396972656,
+      "z": 5.878610610961914,
+      "length": 373.46378638570695
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "homeFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": 109.04402923583984,
+      "y": 244.42092268159448,
+      "z": 69.53695487976074,
+      "length": 276.527712626526
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "startOperations": [
+    {
+      "$type": "raw",
+      "gcode": "M201 X1000 Y1000 Z200 E5000 ; sets maximum accelerations, mm/sec^2",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M203 X200 Y200 Z12 E120 ; sets maximum feedrates, mm / sec",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M204 S1250 T1250 ; sets acceleration (S) and retract acceleration (R), mm/sec^2",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M205 X8.00 Y8.00 Z0.40 E4.50 ; sets the jerk limits, mm/sec",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M205 S0 T0 ; sets the minimum extruding and travel feed rate, mm/sec",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": ";TYPE:Custom",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M862.3 P \u0022MK3S\u0022 ; printer model check",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M862.1 P0.4 ; nozzle diameter check",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M115 U3.14.1 ; tell printer latest fw version",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G90 ; use absolute coordinates",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "M83 ; extruder relative mode",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G28 W ; home all without mesh bed level",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "G80 X112.5 Y92.5 W25 H25 ; mesh bed levelling",
+      "name": "Prusa Header"
+    },
+    {
+      "$type": "raw",
+      "gcode": "",
+      "name": "Prusa Header"
+    }
+  ],
+  "endOperations": [],
+  "gcodeZeroFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -123.84709930419922,
+      "y": -47.47351701567115,
+      "z": 75.41556549072266,
+      "length": 152.57570692016105
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "effectiveAxes": [
+    {
+      "letter": "Y",
+      "kind": "linear",
+      "continuous": false,
+      "travelMin": 0,
+      "travelMax": 210
+    },
+    {
+      "letter": "Z",
+      "kind": "linear",
+      "continuous": false,
+      "travelMin": 0,
+      "travelMax": 210
+    },
+    {
+      "letter": "X",
+      "kind": "linear",
+      "continuous": false,
+      "travelMin": 0,
+      "travelMax": 250
+    }
+  ],
+  "canCheckPointTravel": true,
+  "roots": [
+    {
+      "name": "frame",
+      "binding": "static",
+      "role": "none",
+      "axisLetter": "",
+      "continuous": false
+    }
+  ],
+  "workHolder": {
+    "name": "Y-Axis",
+    "parent": "frame",
+    "binding": "linear",
+    "role": "workHolder",
+    "axisLetter": "Y",
+    "jointOrigin": {
+      "name": "Frame",
+      "origin": {
+        "x": 109.04402923583984,
+        "y": 244.42092268159448,
+        "z": 69.53695487976074,
+        "length": 276.527712626526
+      },
+      "xAxis": {
+        "x": 1,
+        "y": 0,
+        "z": 0,
+        "length": 1
+      },
+      "yAxis": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "length": 1
+      },
+      "normal": {
+        "x": 0,
+        "y": -1,
+        "z": 0,
+        "length": 1
+      }
+    },
+    "authoredJointOrigin": {
+      "name": "Frame",
+      "origin": {
+        "x": -123.84709930419922,
+        "y": -47.473517015671156,
+        "z": 75.41556549072266,
+        "length": 152.57570692016105
+      },
+      "xAxis": {
+        "x": 1,
+        "y": 0,
+        "z": 0,
+        "length": 1
+      },
+      "yAxis": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "length": 1
+      },
+      "normal": {
+        "x": 0,
+        "y": -1,
+        "z": 0,
+        "length": 1
+      }
+    },
+    "travelMin": 0,
+    "travelMax": 210,
+    "continuous": false
+  },
+  "workHolders": [
+    {
+      "name": "Y-Axis",
+      "parent": "frame",
+      "binding": "linear",
+      "role": "workHolder",
+      "axisLetter": "Y",
+      "jointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": 109.04402923583984,
+          "y": 244.42092268159448,
+          "z": 69.53695487976074,
+          "length": 276.527712626526
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredJointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84709930419922,
+          "y": -47.473517015671156,
+          "z": 75.41556549072266,
+          "length": 152.57570692016105
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "travelMin": 0,
+      "travelMax": 210,
+      "continuous": false
+    }
+  ],
+  "effectorFlanges": [
+    {
+      "name": "X-Axis",
+      "parent": "Z-Axis",
+      "binding": "linear",
+      "role": "none",
+      "axisLetter": "X",
+      "jointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "length": 0
+        },
+        "xAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredJointOrigin": {
+        "name": "Frame",
+        "origin": {
+          "x": -123.84709930419922,
+          "y": -47.473517015671156,
+          "z": 75.41556549072266,
+          "length": 152.57570692016105
+        },
+        "xAxis": {
+          "x": 0,
+          "y": 1,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": -19.499993872403735,
+          "y": 17.3999982626194,
+          "z": 98.6000086239925,
+          "length": 102.00476165951439
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -143.34709317660295,
+          "y": -30.073518753051758,
+          "z": 174.01557411471515,
+          "length": 227.45158976548342
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        }
+      },
+      "travelMin": 0,
+      "travelMax": 250,
+      "continuous": false
+    }
+  ],
+  "deltaTowers": []
+}
