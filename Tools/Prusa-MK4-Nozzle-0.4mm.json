@@ -1,0 +1,64 @@
+{
+  "name": "Prusa-MK4-Nozzle-0.4mm",
+  "number": 0,
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -104.2348332080096,
+      "y": -16.01144682389696,
+      "z": 79.863037109375,
+      "length": 132.28519032616416
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "length": 1
+    }
+  },
+  "tcpFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -104.23483099434964,
+      "y": -16.01144608642062,
+      "z": 73.863037109375,
+      "length": 128.75175590732692
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "length": 1
+    }
+  },
+  "type": "nozzle",
+  "nozzleDiameter": 0.4,
+  "layerHeight": 0.2,
+  "filamentDiameter": 1.75,
+  "retractDistance": 0.8,
+  "retractSpeed": 2100
+}
