@@ -1,0 +1,8 @@
+{
+  "name": "ASA",
+  "nozzleTemperature": 260,
+  "bedTemperature": 105,
+  "fanSpeed": 51,
+  "density": 1.07,
+  "use": "additive"
+}
