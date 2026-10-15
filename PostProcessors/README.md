@@ -29,6 +29,8 @@ Two consequences worth having in front of you when authoring a post:
   them, derived from the same flag that decides how `E` is written. A script
   copy can only ever disagree with the body — that mismatch caused a real
   over-extrusion, which is why the preamble is derived rather than authored.
+  **Exception: the Bambu posts**, whose firmware changes the extrusion mode
+  during its own start sequence (see below).
 - **A move belongs in a script, not in an operation band.** Fragment operations
   run outside the solve context that resolves motion, so the end-of-job park is
   written here, and the machine's `endOperations` stop before `M84` — a stepper
@@ -104,9 +106,7 @@ home and level twice.
   `I340 J320` on the H2S). Bambu Studio levels only the first layer's bounding
   box, and Grackle has no first-layer extent to give it.
 - **Removed:**
-  - `M83` and `G21`. The emitter writes these in its preamble, so the scripts
-    rely on the job's **Relative Extrusion staying on** (the default). Bambu's
-    own purge and calibration lines are relative-E.
+  - `G21`, which the emitter writes in its preamble.
   - `M73` progress lines, because Grackle has no time estimate.
   - The start-up tune.
   - The X1C's first-layer lidar scan (`M977`, `M976`), and the H2S's tall-part
@@ -122,6 +122,23 @@ home and level twice.
   those moves from `max_layer_z`, which a post can't know either, so they're
   relative lifts plus Bambu's own tall-part branch: drop the bed to the bottom.
   Moving the bed down only moves the part away from the nozzle.
+
+### `M83` stays in, and Relative Extrusion must stay on
+
+These are the only posts here whose scripts write `M83`, against the rule at the
+top of this file. On the first X1C test, with Bambu's `M83` lines removed, the
+emitter's single `M83` came before the start sequence. The job then ran every
+move in the right place and extruded nothing. Something in Bambu's start sequence
+(the AMS load, `T1000`/`T1100`, `M18 E`) leaves the extruder in absolute mode.
+Each `E1.4` then means "go to position 1.4", which extrudes once and never again.
+Bambu's own file sends `M83` again after each of those steps and once more before
+the print. The posts now keep every one of those lines and end their start script
+with `G90` + `M83`.
+
+The cost is the one the rule warns about: the body must also be relative-E.
+**Leave Relative Extrusion on** (the default) for these posts. With it off, the
+emitter would write absolute `E` values into a file the start script has just put
+in relative mode, and the print would over-extrude badly.
 
 ### What still assumes PLA
 
