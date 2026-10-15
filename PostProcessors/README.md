@@ -139,9 +139,13 @@ PEI `G29.1 Z` trim when you use a different plate.
   filament 1. The end script unloads it back to the AMS, as Bambu Studio does.
 - **Fans:** a bare `M106 S…` is the part-cooling fan, which is what Bambu Studio
   writes. `P2` is the aux fan and `P3` the chamber fan.
-- **Arcs:** the X1C's export used `G2`/`G3` throughout. The H2S's export
-  contained **none**, with arc fitting switched on, so author H2S toolpaths as
-  line segments until `G2`/`G3` is confirmed on that firmware.
+- **Arcs:** both printers take `G2`/`G3`. Bambu Studio's exports use them
+  throughout the print body on the X1C and on the H2S (a curved H2S part had
+  about 300,000).
+- **Start and End operations are required.** A post's start script runs only
+  when the toolpath *begins* with a `Start` operation, and its end script only
+  when the toolpath *ends* with an `End` operation. Generate Code adds neither,
+  so a job without them has no bring-up: no homing, no heating, no levelling.
 - **Delivery:** the file goes to the printer on a memory stick or SD card
   (whichever the printer takes). Bambu printers don't take gcode streamed over serial,
   so Grackle's Machine Control can't drive them.
