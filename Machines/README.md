@@ -88,6 +88,10 @@ Pair it with `Effectors/Bambu_X1C-Extruder.json`,
 and write the file with Code Export's **Bambu .gcode.3mf** option so the printer
 offers the AMS slot picker.
 
+`Bambu_X1C.3dm` carries the geometry on layers `frame`, `Y-Axis`, `Z-Axis` and
+`X-Axis`, matching the `parts` entries. The extruder (`extruder-body`) and nozzle
+(`Tip`) have their own `.3dm` beside their JSON.
+
 Travel is 256 mm on every axis. Bambu Studio's printable height for the X1C is
 250 mm, so treat the last 6 mm of Z as unchecked.
 
