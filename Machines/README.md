@@ -103,6 +103,11 @@ has no start or end operations, for the same reason: the `Bambu Lab H2S` post do
 the bring-up. Pair it with `Effectors/Bambu_H2S-Extruder.json` and the shared
 `Tools/Nozzles/Bambu-Nozzle-0.4mm.json`.
 
+`Bambu_H2S.3dm` uses the same layers as the X1C model (`frame`, `Y-Axis`,
+`Z-Axis`, `X-Axis`), with the plate's top at Z 301.3 like the X1C's, which is
+why the two machines share frame values. The extruder has its own
+`Bambu_H2S-Extruder.3dm`. The nozzle shares the X1C's model.
+
 **Not yet printed.** The H2S post's start sequence (separate X and Z homing,
 trash-chute wipe, plate detection) has only been compared against Bambu Studio's
 export, not run. Watch the first job.
