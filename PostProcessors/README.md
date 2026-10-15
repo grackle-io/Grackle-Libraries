@@ -53,6 +53,7 @@ place — the Material socket on Machine Setup.
 | `Prusa MK4 (Buddy).json` | `Machines/Prusa-MK4.json` + `Effectors/Prusa-MK4-Nextruder.json` | Layered |
 | `Prusa MK3S (Prusa-Firmware).json` | `Machines/Prusa-i3-MK3.json` + `Effectors/Prusa-i3-Extruder.json` | Layered |
 | `prusa-marlin.json` | a hand-built machine with no start/end operations | **Self-contained** |
+| `Bambu Lab X1C.json`, `Bambu Lab H2S.json` | a Bambu machine built on the canvas, no start/end operations | **Self-contained** |
 | `GRBL.json`, `grblHAL.json`, `GRBL Laser.json`, `GRBL Pen Plotter Servo.json` | any GRBL machine | Layered |
 | `linuxcnc.json`, `multicam.json`, `onefinity-masso.json` | the matching control | Layered |
 
@@ -81,3 +82,34 @@ numbers typed onto the `Start` operation.
   as a `Raw Gcode` operation at the head of your job, where you can see it in
   preview, rather than inheriting coordinates from a preset that cannot know
   your setup.
+
+## Bambu Lab (X1C, H2S)
+
+Both Bambu posts are **self-contained**, like `prusa-marlin.json`: there is no
+Bambu machine preset in `Machines/` yet, so the start script does the bring-up
+itself — bed heat, nozzle to 140 °C for probing, `G28`, `G29`, then the
+nozzle to the Material's temperature. If a Bambu machine preset later carries
+its own `startOperations`, cut those lines out of the post rather than letting
+the job home and level twice.
+
+Things that differ from the Prusa posts and are easy to get wrong:
+
+- **Fans are addressed by index.** `M106 P1` is the part-cooling fan, `P2` the
+  aux (side) fan, `P3` the chamber fan. A bare `M106 S…` is not the part fan,
+  so the `fanSpeed`/`fanOff` templates carry `P1`.
+- **No AMS commands.** Bambu Studio loads filament with `M620`/`M621` blocks
+  that are printer- and slot-specific. These posts print with whatever filament
+  is already loaded in the toolhead, so load it from the printer screen first.
+- **No purge or nozzle wipe.** Same reason as the Prusa posts: author it as a
+  `Raw Gcode` operation where you can see it in preview.
+- **The H2S end script does not park X/Y.** The X1C parks at `X65 Y245` (where
+  Bambu Studio parks it). The H2S's safe park position has not been checked, so
+  its post only lifts Z. Add a park once you have one from a Bambu Studio file.
+- **Getting the file onto the printer.** Bambu printers do not take streamed
+  gcode over USB serial, so Grackle's Machine Control cannot drive them. The
+  file goes on by SD card or LAN, and Bambu's own route is a `.gcode.3mf`
+  wrapper rather than a bare `.gcode`.
+
+Both posts follow Bambu Studio's start/end gcode for the commands they use, but
+neither has been run on a printer yet. Check the first job from each one with
+the printer attended.
