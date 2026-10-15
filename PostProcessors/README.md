@@ -85,31 +85,65 @@ numbers typed onto the `Start` operation.
 
 ## Bambu Lab (X1C, H2S)
 
-Both Bambu posts are **self-contained**, like `prusa-marlin.json`: there is no
-Bambu machine preset in `Machines/` yet, so the start script does the bring-up
-itself — bed heat, nozzle to 140 °C for probing, `G28`, `G29`, then the
-nozzle to the Material's temperature. If a Bambu machine preset later carries
-its own `startOperations`, cut those lines out of the post rather than letting
-the job home and level twice.
+Both Bambu posts are **self-contained**: their start and end scripts are Bambu
+Studio's own machine start/end gcode, taken from files Bambu Studio
+`02.06.00.51` exported for each printer with PLA on a Textured PEI plate. There
+is no Bambu machine preset in `Machines/` yet. If one later carries its own
+`startOperations`, cut the matching lines out of the post so the job doesn't
+home and level twice.
 
-Things that differ from the Prusa posts and are easy to get wrong:
+### What changed from Bambu Studio's output, and why
 
-- **Fans are addressed by index.** `M106 P1` is the part-cooling fan, `P2` the
-  aux (side) fan, `P3` the chamber fan. A bare `M106 S…` is not the part fan,
-  so the `fanSpeed`/`fanOff` templates carry `P1`.
-- **No AMS commands.** Bambu Studio loads filament with `M620`/`M621` blocks
-  that are printer- and slot-specific. These posts print with whatever filament
-  is already loaded in the toolhead, so load it from the printer screen first.
-- **No purge or nozzle wipe.** Same reason as the Prusa posts: author it as a
-  `Raw Gcode` operation where you can see it in preview.
-- **The H2S end script does not park X/Y.** The X1C parks at `X65 Y245` (where
-  Bambu Studio parks it). The H2S's safe park position has not been checked, so
-  its post only lifts Z. Add a park once you have one from a Bambu Studio file.
-- **Getting the file onto the printer.** Bambu printers do not take streamed
-  gcode over USB serial, so Grackle's Machine Control cannot drive them. The
-  file goes on by SD card or LAN, and Bambu's own route is a `.gcode.3mf`
-  wrapper rather than a bare `.gcode`.
+- **Material temperatures are variables.** Every nozzle and bed setpoint that
+  Bambu Studio filled from the filament (220 °C / 55 °C in the source files) is
+  now `{hotendTemp}` / `{bedTemp}`, so it comes from the Material wired into
+  Machine Setup. Bambu's *fixed* temperatures stay as they were: 140 °C for
+  probing, 75 °C to start the hotend fan, and on the X1C 250 °C for the flush and
+  200 °C for the post-flush shrink.
+- **Bed levelling covers the whole plate** (`G29 … X0 Y0 I256 J256` on the X1C,
+  `I340 J320` on the H2S). Bambu Studio levels only the first layer's bounding
+  box, and Grackle has no first-layer extent to give it.
+- **Removed:**
+  - `M83` and `G21`. The emitter writes these in its preamble, so the scripts
+    rely on the job's **Relative Extrusion staying on** (the default). Bambu's
+    own purge and calibration lines are relative-E.
+  - `M73` progress lines, because Grackle has no time estimate.
+  - The start-up tune.
+  - The X1C's first-layer lidar scan (`M977`, `M976`), and the H2S's tall-part
+    obstacle check under the bed (`G3811 Z<print height>`). Bambu Studio leaves
+    both out for some jobs too: the scan when first-layer inspection is off,
+    the check when the print is under 145 mm. The scan is dropped because it
+    expects a slicer-shaped first layer. The check is dropped because it needs
+    the job's height, which a post can't know.
+  - The spaghetti detector (`M981 S1`), which Bambu Studio turns on after its
+    start gcode. Non-planar and wire-printed paths are what it is trained to
+    flag.
+- **The end scripts lift and drop the bed by fixed amounts.** Bambu Studio sizes
+  those moves from `max_layer_z`, which a post can't know either, so they're
+  relative lifts plus Bambu's own tall-part branch: drop the bed to the bottom.
+  Moving the bed down only moves the part away from the nozzle.
 
-Both posts follow Bambu Studio's start/end gcode for the commands they use, but
-neither has been run on a printer yet. Check the first job from each one with
-the printer attended.
+### What still assumes PLA
+
+Lines Bambu Studio rendered from the filament profile, other than temperatures,
+are kept as exported: `M1002 set_filament_type:PLA`, the PLA anti-jam chamber
+fan (`M142`), the H2S chamber auto-cooling setting, and the flush and
+calibration feed rates. For another filament, export a file from Bambu Studio
+with that filament and regenerate the scripts. The same goes for the Textured
+PEI `G29.1 Z` trim when you use a different plate.
+
+### AMS, fans, arcs and getting the file to the printer
+
+- **AMS:** the start script keeps Bambu's `M620 M` / `M620 S0A … T0 … M621 S0A`
+  block, so the filament comes from whichever slot the printer screen maps to
+  filament 1. The end script unloads it back to the AMS, as Bambu Studio does.
+- **Fans:** a bare `M106 S…` is the part-cooling fan, which is what Bambu Studio
+  writes. `P2` is the aux fan and `P3` the chamber fan.
+- **Arcs:** the X1C's export used `G2`/`G3` throughout. The H2S's export
+  contained **none**, with arc fitting switched on, so author H2S toolpaths as
+  line segments until `G2`/`G3` is confirmed on that firmware.
+- **Delivery:** the file goes to the printer on a memory stick or SD card
+  (whichever the printer takes). Bambu printers don't take gcode streamed over serial,
+  so Grackle's Machine Control can't drive them.
+
+Run the first job from each post with the printer attended.
