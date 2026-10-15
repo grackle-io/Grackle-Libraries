@@ -1,0 +1,93 @@
+name: Release
+
+# Runs on every push to main (i.e. every merged PR) and publishes a GitHub
+# Release tagged Grackle_Libraries_1.N, one higher than the latest such tag:
+#
+#   Grackle_Libraries_1.3  →  Grackle_Libraries_1.4
+#
+# The plugin's Libraries… button reads main directly, not a release, so a
+# release here is the versioned snapshot of what main held at that merge. The
+# notes list the PRs merged since the previous tag.
+#
+# workflow_dispatch is the manual escape hatch for a push that produced no run
+# (dropped webhooks have done that to the plugin repo). Dispatching from
+# Actions > Release > Run workflow releases main's head; a head that already
+# carries a Grackle_Libraries_1.* tag is skipped, so it can't double-release.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Two merges close together must not both read 1.N and both claim 1.(N+1).
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Validate & Release
+    # The push trigger already guarantees main; this guards the dispatch one,
+    # where any other branch picked from the dropdown would tag a commit off main.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # A preset that does not parse never reaches a dropdown, and one with no
+      # "name" field is invisible there too (see README.md). Neither should be
+      # given a version number.
+      - name: Validate presets
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          bad = []
+          files = [p for p in pathlib.Path('.').rglob('*.json') if '.git' not in p.parts]
+          for path in files:
+              try:
+                  data = json.loads(path.read_text(encoding='utf-8'))
+              except Exception as e:
+                  bad.append(f"{path}: does not parse ({e})")
+                  continue
+              if not isinstance(data, dict) or not str(data.get('name') or '').strip():
+                  bad.append(f"{path}: has no \"name\" field, so it never appears in a dropdown")
+          for line in bad:
+              print(f"::error::{line}")
+          print(f"{len(files)} preset files checked, {len(bad)} problem(s).")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Compute next version
+        id: version
+        run: |
+          EXISTING=$(git tag --points-at HEAD -l 'Grackle_Libraries_1.*')
+          if [ -n "$EXISTING" ]; then
+            echo "HEAD is already released as $EXISTING; nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          LATEST=$(git tag -l 'Grackle_Libraries_1.*' | grep -E '^Grackle_Libraries_1\.[0-9]+$' | sort -V | tail -1)
+          N=${LATEST##*.}
+          NEXT="Grackle_Libraries_1.$(( ${N:-0} + 1 ))"
+          echo "Latest tag: ${LATEST:-none}"
+          echo "Next tag:   $NEXT"
+          echo "tag=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "number=1.$(( ${N:-0} + 1 ))" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      # Creates the tag on this exact commit as part of publishing.
+      - name: Publish GitHub Release
+        if: steps.version.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: Grackle Libraries ${{ steps.version.outputs.number }}
+          generate_release_notes: true

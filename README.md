@@ -61,3 +61,15 @@ Open a PR against `main` with the JSON (and `.3dm`, if the part has geometry)
 in the right category folder, named to match. Keep the pair's base name
 identical — `Prusa-MK4.json` / `Prusa-MK4.3dm` — since that is how geometry is
 found, and check the category README for what the schema expects.
+
+## Releases
+
+Every merge to `main` publishes a release automatically
+(`.github/workflows/release.yml`), tagged `Grackle_Libraries_1.N` one higher
+than the last. Don't create tags or releases by hand. The run first checks that
+every preset parses and has a `name`, and a merge that breaks one gets no
+release until a fix merges. If a merge ever produces no run, use **Actions ▸
+Release ▸ Run workflow** on `main`.
+
+The plugin's **Libraries…** button reads `main` directly, so a preset is
+available the moment its PR merges. The release is the versioned record of that.
