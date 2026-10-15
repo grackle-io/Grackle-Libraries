@@ -89,10 +89,20 @@ numbers typed onto the `Start` operation.
 
 Both Bambu posts are **self-contained**: their start and end scripts are Bambu
 Studio's own machine start/end gcode, taken from files Bambu Studio
-`02.06.00.51` exported for each printer with PLA on a Textured PEI plate. There
-is no Bambu machine preset in `Machines/` yet. If one later carries its own
-`startOperations`, cut the matching lines out of the post so the job doesn't
-home and level twice.
+`02.06.00.51` exported for each printer with PLA on a Textured PEI plate. The
+X1C machine preset (`Machines/Bambu_X1C.json`) therefore has **empty**
+`startOperations` and `endOperations`: the bring-up is the post's. If a Bambu
+machine preset ever carries its own, cut the matching lines out of the post so
+the job doesn't home and level twice.
+
+| Post | Machine | Effector | Tool |
+|---|---|---|---|
+| `Bambu Lab X1C.json` | `Machines/Bambu_X1C.json` | `Effectors/Bambu_X1C-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` |
+| `Bambu Lab H2S.json` | none yet | | |
+
+The X1C stack has printed: the job packed as `.gcode.3mf` from Grackle's Code
+Export showed its preview and the AMS picker, loaded the chosen filament and
+extruded.
 
 ### What changed from Bambu Studio's output, and why
 
