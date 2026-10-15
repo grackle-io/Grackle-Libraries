@@ -72,6 +72,25 @@ that matches its firmware, not the one that matches its name.
   `EmitOptions` flag that decides how E is written, so a copy pasted from a
   slicer header can only disagree with the body.
 
+## Bambu Lab X1C
+
+`Bambu_X1C.json` is a CoreXY printer whose **bed carries Z**: `Z-Axis` is the
+`workHolder`, its joint normal points down (a larger Z moves the plate away from
+the nozzle), and `X-Axis` hangs off the `Y-Axis` gantry. See `workflows.md` §1b
+in the plugin repo. Gcode zero is the front-left corner of the plate with the
+nozzle touching it.
+
+Unlike the Prusa files it has **no start or end operations**. The
+`Bambu Lab X1C` post carries Bambu Studio's whole bring-up (homing, levelling,
+AMS load, purge) and its end sequence, so anything added here would run twice.
+Pair it with `Effectors/Bambu_X1C-Extruder.json`,
+`Tools/Nozzles/Bambu-Nozzle-0.4mm.json` and `PostProcessors/Bambu Lab X1C.json`,
+and write the file with Code Export's **Bambu .gcode.3mf** option so the printer
+offers the AMS slot picker.
+
+Travel is 256 mm on every axis. Bambu Studio's printable height for the X1C is
+250 mm, so treat the last 6 mm of Z as unchecked.
+
 ## Numbers you may want to change
 
 Travel limits are the published build volumes (MK3S+ 250 × 210 × 210, MK4
