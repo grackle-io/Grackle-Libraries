@@ -95,6 +95,23 @@ offers the AMS slot picker.
 Travel is 256 mm on every axis. Bambu Studio's printable height for the X1C is
 250 mm, so treat the last 6 mm of Z as unchecked.
 
+## Bambu Lab H2S
+
+`Bambu_H2S.json` is the same mechanism as the X1C, with the bed carrying Z, and
+the same frames. Its travel is the H2S build volume: X 340, Y 320, Z 340. It also
+has no start or end operations, for the same reason: the `Bambu Lab H2S` post does
+the bring-up. Pair it with `Effectors/Bambu_H2S-Extruder.json` and the shared
+`Tools/Nozzles/Bambu-Nozzle-0.4mm.json`.
+
+`Bambu_H2S.3dm` uses the same layers as the X1C model (`frame`, `Y-Axis`,
+`Z-Axis`, `X-Axis`), with the plate's top at Z 301.3 like the X1C's, which is
+why the two machines share frame values. The extruder has its own
+`Bambu_H2S-Extruder.3dm`. The nozzle shares the X1C's model.
+
+**Printed.** The H2S post's start sequence (separate X and Z homing, trash-chute
+wipe, plate detection) ran through to a completed test print, packed as
+`.gcode.3mf` from Code Export.
+
 ## Numbers you may want to change
 
 Travel limits are the published build volumes (MK3S+ 250 × 210 × 210, MK4
