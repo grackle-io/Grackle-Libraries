@@ -100,7 +100,7 @@ the job doesn't home and level twice.
 | `Bambu Lab X1C.json` | `Machines/Bambu_X1C.json` | `Effectors/Bambu_X1C-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` |
 | `Bambu Lab H2S.json` | `Machines/Bambu_H2S.json` | `Effectors/Bambu_H2S-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` (shared with the X1C) |
 
-The H2S stack has not printed yet. The X1C stack has printed: the job packed as `.gcode.3mf` from Grackle's Code
+Both stacks have printed: the job packed as `.gcode.3mf` from Grackle's Code
 Export showed its preview and the AMS picker, loaded the chosen filament and
 extruded.
 

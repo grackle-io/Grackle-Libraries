@@ -108,9 +108,9 @@ the bring-up. Pair it with `Effectors/Bambu_H2S-Extruder.json` and the shared
 why the two machines share frame values. The extruder has its own
 `Bambu_H2S-Extruder.3dm`. The nozzle shares the X1C's model.
 
-**Not yet printed.** The H2S post's start sequence (separate X and Z homing,
-trash-chute wipe, plate detection) has only been compared against Bambu Studio's
-export, not run. Watch the first job.
+**Printed.** The H2S post's start sequence (separate X and Z homing, trash-chute
+wipe, plate detection) ran through to a completed test print, packed as
+`.gcode.3mf` from Code Export.
 
 ## Numbers you may want to change
 
