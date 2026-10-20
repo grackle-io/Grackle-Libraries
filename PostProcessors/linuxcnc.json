@@ -5,6 +5,8 @@
     "travel": "G0 X{x:.4f} Y{y:.4f} Z{z:.4f}",
     "arcMoveCw": "G2 X{x:.4f} Y{y:.4f} Z{z:.4f} I{i:.4f} J{j:.4f} F{f:.1f}",
     "arcMoveCcw": "G3 X{x:.4f} Y{y:.4f} Z{z:.4f} I{i:.4f} J{j:.4f} F{f:.1f}",
+    "zoneFine": "G61",
+    "zoneBlend": "G64 P{p:.4f} Q{q:.4f}",
     "dwell": "G4 P{s:.3f}",
     "digitalOutputSyncOn": "M62 P{pin}",
     "digitalOutputSyncOff": "M63 P{pin}",
