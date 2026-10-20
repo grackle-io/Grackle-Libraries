@@ -25,5 +25,5 @@
   "axisMap": { "X": "X", "Y": "Y", "Z": "Z" },
   "commentFormat": "({text})",
   "startScript": "G17 G21 G90 G94\nG54",
-  "endScript": "M5\nM2"
+  "endScript": "(park: lift 50 mm straight up from the last point, X and Y unchanged)\nG91\nG0 Z50\nG90\nM5\nM2"
 }
