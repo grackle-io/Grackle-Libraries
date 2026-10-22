@@ -55,7 +55,7 @@ place — the Material socket on Machine Setup.
 | `Prusa MK4 (Buddy).json` | `Machines/Prusa-MK4.json` + `Effectors/Prusa-MK4-Nextruder.json` | Layered |
 | `Prusa MK3S (Prusa-Firmware).json` | `Machines/Prusa-i3-MK3.json` + `Effectors/Prusa-i3-Extruder.json` | Layered |
 | `prusa-marlin.json` | a hand-built machine with no start/end operations | **Self-contained** |
-| `Bambu Lab X1C.json`, `Bambu Lab H2S.json` | a Bambu machine built on the canvas, no start/end operations | **Self-contained** |
+| `Bambu Lab X1C.json`, `Bambu Lab H2S.json`, `Bambu Lab A1.json` | a Bambu machine built on the canvas, no start/end operations | **Self-contained** |
 | `GRBL.json`, `grblHAL.json`, `GRBL Laser.json`, `GRBL Pen Plotter Servo.json` | any GRBL machine | Layered |
 | `linuxcnc.json`, `multicam.json`, `onefinity-masso.json` | the matching control | Layered |
 
@@ -85,11 +85,12 @@ numbers typed onto the `Start` operation.
   preview, rather than inheriting coordinates from a preset that cannot know
   your setup.
 
-## Bambu Lab (X1C, H2S)
+## Bambu Lab (X1C, H2S, A1)
 
-Both Bambu posts are **self-contained**: their start and end scripts are Bambu
+The Bambu posts are **self-contained**: their start and end scripts are Bambu
 Studio's own machine start/end gcode, taken from files Bambu Studio
-`02.06.00.51` exported for each printer with PLA on a Textured PEI plate. The
+`02.06.00.51` exported for each printer with PLA on a Textured PEI plate (the
+A1's with a 0.4 mm nozzle). The
 X1C machine preset (`Machines/Bambu_X1C.json`) therefore has **empty**
 `startOperations` and `endOperations`: the bring-up is the post's. If a Bambu
 machine preset ever carries its own, cut the matching lines out of the post so
@@ -99,10 +100,14 @@ the job doesn't home and level twice.
 |---|---|---|---|
 | `Bambu Lab X1C.json` | `Machines/Bambu_X1C.json` | `Effectors/Bambu_X1C-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` |
 | `Bambu Lab H2S.json` | `Machines/Bambu_H2S.json` | `Effectors/Bambu_H2S-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` (shared with the X1C) |
+| `Bambu Lab A1.json` | a 256 × 256 × 256 mm A1 machine (no start/end operations) | — | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` |
 
-Both stacks have printed: the job packed as `.gcode.3mf` from Grackle's Code
+The X1C and H2S stacks have printed: the job packed as `.gcode.3mf` from Grackle's Code
 Export showed its preview and the AMS picker, loaded the chosen filament and
-extruded.
+extruded. **The A1 post has not printed yet**: its start script matches Bambu
+Studio's own A1 output line for line apart from the changes below, but run its
+first job attended. Packing it as `.gcode.3mf` needs a Grackle build with the A1
+template (`BambuPrinter.A1`).
 
 ### What changed from Bambu Studio's output, and why
 
@@ -111,14 +116,16 @@ extruded.
   now `{hotendTemp}` / `{bedTemp}`, so it comes from the Material wired into
   Machine Setup. Bambu's *fixed* temperatures stay as they were: 140 °C for
   probing, 75 °C to start the hotend fan, and on the X1C 250 °C for the flush and
-  200 °C for the post-flush shrink.
+  200 °C for the post-flush shrink. The A1 keeps Bambu's PLA flush at 220 °C
+  and its 170 °C nozzle-wipe temperature (Bambu derives that one as print
+  temperature − 50; a Grackle script cannot do arithmetic, so it is fixed).
 - **Bed levelling covers the whole plate** (`G29 … X0 Y0 I256 J256` on the X1C,
-  `I340 J320` on the H2S). Bambu Studio levels only the first layer's bounding
+  `I340 J320` on the H2S, `G29 A1 X0 Y0 I256 J256` on the A1). Bambu Studio levels only the first layer's bounding
   box, and Grackle has no first-layer extent to give it.
 - **Removed:**
   - `G21`, which the emitter writes in its preamble.
   - `M73` progress lines, because Grackle has no time estimate.
-  - The start-up tune.
+  - The start-up tune (and, on the A1, the finish tune).
   - The X1C's first-layer lidar scan (`M977`, `M976`), and the H2S's tall-part
     obstacle check under the bed (`G3811 Z<print height>`). Bambu Studio leaves
     both out for some jobs too: the scan when first-layer inspection is off,
@@ -131,7 +138,11 @@ extruded.
 - **The end scripts lift and drop the bed by fixed amounts.** Bambu Studio sizes
   those moves from `max_layer_z`, which a post can't know either, so they're
   relative lifts plus Bambu's own tall-part branch: drop the bed to the bottom.
-  Moving the bed down only moves the part away from the nozzle.
+  Moving the bed down only moves the part away from the nozzle. The A1 is a
+  bed-slinger whose Z moves the gantry, so its end script lifts the nozzle 0.5 mm
+  and then raises the gantry to `Z256`, Bambu's own branch for a tall part. Its
+  timelapse frames (`M971`, `M991`) are also left out: they belong to a
+  slicer-shaped layer sequence.
 
 ### `M83` stays in, and Relative Extrusion must stay on
 
@@ -166,7 +177,7 @@ PEI `G29.1 Z` trim when you use a different plate.
   filament 1. The end script unloads it back to the AMS, as Bambu Studio does.
 - **Fans:** a bare `M106 S…` is the part-cooling fan, which is what Bambu Studio
   writes. `P2` is the aux fan and `P3` the chamber fan.
-- **Arcs:** both printers take `G2`/`G3`. Bambu Studio's exports use them
+- **Arcs:** all three printers take `G2`/`G3`. Bambu Studio's exports use them
   throughout the print body on the X1C and on the H2S (a curved H2S part had
   about 300,000).
 - **Start and End operations are required.** A post's start script runs only
