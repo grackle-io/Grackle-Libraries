@@ -123,6 +123,10 @@ carries `X-Axis` and the extruder. Travel is 256 mm on every axis, the A1's
 and `PostProcessors/Bambu Lab A1.json`, and write the file with Code Export's
 **Bambu .gcode.3mf** option.
 
+`Bambu-A1.3dm` carries the geometry on layers `frame`, `Y-Axis`, `Z-Axis` and
+`X-Axis`, matching the JSON's part names. The extruder and nozzle have their own
+`Bambu-A1-Extruder.3dm` and `Bambu-A1-Nozzle-0.4mm.3dm`.
+
 **Not yet printed.** Run the first job attended.
 
 ## Numbers you may want to change
