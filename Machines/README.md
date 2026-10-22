@@ -112,6 +112,19 @@ why the two machines share frame values. The extruder has its own
 wipe, plate detection) ran through to a completed test print, packed as
 `.gcode.3mf` from Code Export.
 
+## Bambu Lab A1
+
+`Bambu-A1.json` is a **bed-slinger**, unlike the X1C and H2S: the bed
+(`Y-Axis`, the work holder) carries Y, and `Z-Axis` lifts the gantry that
+carries `X-Axis` and the extruder. Travel is 256 mm on every axis, the A1's
+256 × 256 × 256 mm build volume. It has no start or end operations: the
+`Bambu Lab A1` post does the bring-up. Pair it with
+`Effectors/Bambu-A1-Extruder.json`, `Tools/Nozzles/Bambu-A1-Nozzle-0.4mm.json`
+and `PostProcessors/Bambu Lab A1.json`, and write the file with Code Export's
+**Bambu .gcode.3mf** option.
+
+**Not yet printed.** Run the first job attended.
+
 ## Numbers you may want to change
 
 Travel limits are the published build volumes (MK3S+ 250 × 210 × 210, MK4
