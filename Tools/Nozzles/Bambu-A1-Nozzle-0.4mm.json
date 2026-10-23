@@ -1,0 +1,65 @@
+{
+  "name": "Bambu-A1-Nozzle-0.4mm",
+  "number": 0,
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -6.999999999999986,
+      "y": 120.29999999999967,
+      "z": 29.800000000000082,
+      "length": 124.13351682764782
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "length": 1
+    }
+  },
+  "tcpFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": -6.999999999999986,
+      "y": 120.2999999999997,
+      "z": 0.8000000000000694,
+      "length": 120.506140922361
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": -1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "length": 1
+    }
+  },
+  "type": "nozzle",
+  "nozzleDiameter": 0.4,
+  "layerHeight": 0.2,
+  "filamentDiameter": 1.75,
+  "retractDistance": 0.1,
+  "retractSpeed": 2100,
+  "retractExtra": 0
+}

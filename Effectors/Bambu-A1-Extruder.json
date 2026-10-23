@@ -1,0 +1,152 @@
+{
+  "name": "Bambu-A1-Extruder",
+  "originFrame": {
+    "name": "Frame",
+    "origin": {
+      "x": 119.76819450858515,
+      "y": 120.29999999999968,
+      "z": 124.22511396890349,
+      "length": 210.35301128444362
+    },
+    "xAxis": {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "length": 1
+    },
+    "yAxis": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "length": 1
+    },
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "length": 1
+    }
+  },
+  "parts": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": -126.76819450858514,
+          "y": -1.4210854715202004E-14,
+          "z": -94.4251139689034,
+          "length": 158.07048202307374
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -6.999999999999986,
+          "y": 120.29999999999967,
+          "z": 29.800000000000082,
+          "length": 124.13351682764782
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ],
+  "startOperations": [],
+  "endOperations": [],
+  "tcpOverride": false,
+  "states": [],
+  "toolFlanges": [
+    {
+      "name": "extruder-body",
+      "flange": {
+        "name": "Frame",
+        "origin": {
+          "x": -126.76819450858514,
+          "y": -1.4210854715202004E-14,
+          "z": -94.4251139689034,
+          "length": 158.07048202307374
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      },
+      "authoredFlange": {
+        "name": "Frame",
+        "origin": {
+          "x": -6.999999999999986,
+          "y": 120.29999999999967,
+          "z": 29.800000000000082,
+          "length": 124.13351682764782
+        },
+        "xAxis": {
+          "x": 1,
+          "y": 0,
+          "z": 0,
+          "length": 1
+        },
+        "yAxis": {
+          "x": 0,
+          "y": -1,
+          "z": 0,
+          "length": 1
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": -1,
+          "length": 1
+        }
+      }
+    }
+  ]
+}
