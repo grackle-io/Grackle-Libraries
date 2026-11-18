@@ -55,7 +55,7 @@ place — the Material socket on Machine Setup.
 | `Prusa MK4 (Buddy).json` | `Machines/Prusa-MK4.json` + `Effectors/Prusa-MK4-Nextruder.json` | Layered |
 | `Prusa MK3S (Prusa-Firmware).json` | `Machines/Prusa-i3-MK3.json` + `Effectors/Prusa-i3-Extruder.json` | Layered |
 | `prusa-marlin.json` | a hand-built machine with no start/end operations | **Self-contained** |
-| `Bambu Lab X1C.json`, `Bambu Lab H2S.json`, `Bambu Lab A1.json` | a Bambu machine built on the canvas, no start/end operations | **Self-contained** |
+| `Bambu Lab X1C.json`, `Bambu Lab H2S.json`, `Bambu Lab A1.json`, `Bambu Lab P2S.json` | a Bambu machine built on the canvas, no start/end operations | **Self-contained** |
 | `GRBL.json`, `grblHAL.json`, `GRBL Laser.json`, `GRBL Pen Plotter Servo.json` | any GRBL machine | Layered |
 | `linuxcnc.json`, `multicam.json`, `onefinity-masso.json` | the matching control | Layered |
 
@@ -85,12 +85,13 @@ numbers typed onto the `Start` operation.
   preview, rather than inheriting coordinates from a preset that cannot know
   your setup.
 
-## Bambu Lab (X1C, H2S, A1)
+## Bambu Lab (X1C, H2S, A1, P2S)
 
 The Bambu posts are **self-contained**: their start and end scripts are Bambu
 Studio's own machine start/end gcode, taken from files Bambu Studio
 `02.06.00.51` exported for each printer with PLA on a Textured PEI plate (the
-A1's with a 0.4 mm nozzle). The
+A1's with a 0.4 mm nozzle). The P2S post comes from a Bambu Studio
+`02.09.01.70` export (0.4 mm nozzle, Generic PLA, Textured PEI). The
 X1C machine preset (`Machines/Bambu_X1C.json`) therefore has **empty**
 `startOperations` and `endOperations`: the bring-up is the post's. If a Bambu
 machine preset ever carries its own, cut the matching lines out of the post so
@@ -101,13 +102,22 @@ the job doesn't home and level twice.
 | `Bambu Lab X1C.json` | `Machines/Bambu_X1C.json` | `Effectors/Bambu_X1C-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` |
 | `Bambu Lab H2S.json` | `Machines/Bambu_H2S.json` | `Effectors/Bambu_H2S-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` (shared with the X1C) |
 | `Bambu Lab A1.json` | `Machines/Bambu-A1.json` | `Effectors/Bambu-A1-Extruder.json` | `Tools/Nozzles/Bambu-A1-Nozzle-0.4mm.json` |
+| `Bambu Lab P2S.json` | `Machines/Bambu_P2S.json` | `Effectors/Bambu_P2S-Extruder.json` | `Tools/Nozzles/Bambu-Nozzle-0.4mm.json` (shared with the X1C) |
 
 The X1C and H2S stacks have printed: the job packed as `.gcode.3mf` from Grackle's Code
 Export showed its preview and the AMS picker, loaded the chosen filament and
 extruded. **The A1 post has not printed yet**: its start script matches Bambu
 Studio's own A1 output line for line apart from the changes below, but run its
 first job attended. Packing it as `.gcode.3mf` needs a Grackle build with the A1
-template (`BambuPrinter.A1`).
+template (`BambuPrinter.A1`). **The P2S post has not printed yet either**, and
+the same applies: packing it needs a Grackle build with the P2S template
+(`BambuPrinter.P2S`).
+
+**The P2S post adds one line.** Bambu's P2S start gcode has no
+`;===== machine: …` line (it opens `;======== P2S start gcode==========`), and
+that line is how Code Export tells which printer a job is for. The post adds
+`;===== machine: P2S =====` under Bambu's own header. It is a comment, so the
+printer ignores it.
 
 ### What changed from Bambu Studio's output, and why
 
@@ -119,14 +129,17 @@ template (`BambuPrinter.A1`).
   200 °C for the post-flush shrink. The A1 keeps Bambu's PLA flush at 220 °C
   and its 170 °C nozzle-wipe temperature (Bambu derives that one as print
   temperature − 50; a Grackle script cannot do arithmetic, so it is fixed).
+  The P2S keeps Bambu's 240 °C flush temperature and the 140 °C it pre-heats
+  the nozzle to during detection and the wipe (Bambu derives that one as print
+  temperature − 80, which is 140 for PLA, so it is fixed too).
 - **Bed levelling covers the whole plate** (`G29 … X0 Y0 I256 J256` on the X1C,
-  `I340 J320` on the H2S, `G29 A1 X0 Y0 I256 J256` on the A1). Bambu Studio levels only the first layer's bounding
+  `I340 J320` on the H2S, `G29 A1 X0 Y0 I256 J256` on the A1 and the P2S). Bambu Studio levels only the first layer's bounding
   box, and Grackle has no first-layer extent to give it.
 - **Removed:**
   - `G21`, which the emitter writes in its preamble.
   - `M73` progress lines, because Grackle has no time estimate.
-  - The start-up tune (and, on the A1, the finish tune).
-  - The X1C's first-layer lidar scan (`M977`, `M976`), and the H2S's tall-part
+  - The start-up tune (and, on the A1 and the P2S, the finish tune).
+  - The X1C's first-layer lidar scan (`M977`, `M976`), and the H2S's and P2S's tall-part
     obstacle check under the bed (`G3811 Z<print height>`). Bambu Studio leaves
     both out for some jobs too: the scan when first-layer inspection is off,
     the check when the print is under 145 mm. The scan is dropped because it
@@ -142,7 +155,9 @@ template (`BambuPrinter.A1`).
   bed-slinger whose Z moves the gantry, so its end script lifts the nozzle 0.5 mm
   and then raises the gantry to `Z256`, Bambu's own branch for a tall part. Its
   timelapse frames (`M971`, `M991`) are also left out: they belong to a
-  slicer-shaped layer sequence.
+  slicer-shaped layer sequence. The P2S end script drops its timelapse block
+  (`M991 S0 P-1`) for the same reason, and lowers the bed 10 mm before moving
+  to the trash chute, then to `Z256`.
 
 ### `M83` stays in, and Relative Extrusion must stay on
 
@@ -165,7 +180,7 @@ in relative mode, and the print would over-extrude badly.
 
 Lines Bambu Studio rendered from the filament profile, other than temperatures,
 are kept as exported: `M1002 set_filament_type:PLA`, the PLA anti-jam chamber
-fan (`M142`), the H2S chamber auto-cooling setting, and the flush and
+fan (`M142`), the H2S and P2S chamber auto-cooling settings and airduct mode, and the flush and
 calibration feed rates. For another filament, export a file from Bambu Studio
 with that filament and regenerate the scripts. The same goes for the Textured
 PEI `G29.1 Z` trim when you use a different plate.
