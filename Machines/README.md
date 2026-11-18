@@ -129,6 +129,23 @@ and `PostProcessors/Bambu Lab A1.json`, and write the file with Code Export's
 
 **Not yet printed.** Run the first job attended.
 
+## Bambu Lab P2S
+
+`Bambu_P2S.json` is a copy of the X1C machine: the P2S has the same CoreXY
+mechanism with the bed carrying Z, the same 256 × 256 × 256 mm build volume and
+the same frames. Only the `name` differs. Like the other Bambu machines it has no
+start or end operations: the `Bambu Lab P2S` post does the bring-up. Pair it
+with `Effectors/Bambu_P2S-Extruder.json`, the shared
+`Tools/Nozzles/Bambu-Nozzle-0.4mm.json` and `PostProcessors/Bambu Lab P2S.json`,
+and write the file with Code Export's **Bambu .gcode.3mf** option.
+
+`Bambu_P2S.3dm` and `Effectors/Bambu_P2S-Extruder.3dm` are copies of the X1C
+models, on the same layers (`frame`, `Y-Axis`, `Z-Axis`, `X-Axis`;
+`extruder-body`). Bambu Studio's printable height for the P2S is the full
+256 mm.
+
+**Not yet printed.** Run the first job attended.
+
 ## Numbers you may want to change
 
 Travel limits are the published build volumes (MK3S+ 250 × 210 × 210, MK4
